@@ -171,7 +171,7 @@ function initFireflies() {
     firefliesData = [];
 
     const isMobile = window.innerWidth < 768;
-    const totalFireflies = isMobile ? 20 : 50; 
+    const totalFireflies = isMobile ? 15 : 50; 
 
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
