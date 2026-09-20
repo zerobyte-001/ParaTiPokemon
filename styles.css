@@ -1,0 +1,294 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: black;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    touch-action: none;
+}
+
+/* Pantalla de inicio */
+#start-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    cursor: pointer;
+    text-align: center;
+    z-index: 10;
+    position: relative;
+}
+
+#start-sunflower {
+    font-size: 100px;
+    filter: drop-shadow(0 0 30px rgba(255, 255, 0, 0.8));
+    animation: pulse 1.5s infinite alternate;
+    margin-bottom: 20px;
+    line-height: 1;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(255, 255, 0, 0.6)); }
+    100% { transform: scale(1.05); filter: drop-shadow(0 0 40px rgba(255, 255, 100, 1)); }
+}
+
+#start-screen h1 {
+    font-size: 2em;
+    font-weight: normal;
+    color: #ffdf00;
+    text-shadow: 0 0 10px #ffdf00;
+}
+
+/* Contenedor general */
+#firefly-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- FONDO DE ESTRELLAS Y ESTRELLAS FUGACES --- */
+#stars-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    animation: starTwinkle infinite ease-in-out;
+}
+
+@keyframes starTwinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 6px white; }
+}
+
+/* Estilo de la estrella fugaz */
+.shooting-star {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0));
+    transform: rotate(-45deg);
+    pointer-events: none;
+    animation: shoot 1.2s linear forwards;
+    z-index: 1;
+}
+
+@keyframes shoot {
+    0% {
+        transform: translateX(0) translateY(0) rotate(-45deg);
+        opacity: 1;
+        width: 0px;
+    }
+    30% {
+        width: 120px;
+    }
+    100% {
+        transform: translateX(-350px) translateY(350px) rotate(-45deg);
+        opacity: 0;
+        width: 0px;
+    }
+}
+
+/* --- ESTILOS DEL GRAN GIRASOL CENTRAL --- */
+.central-sunflower-container {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scale(0.75);
+    transform-origin: bottom center;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.sunflower {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.flower_wrapper {
+    position: absolute;
+    left: 50%;
+    bottom: 2vmin;
+    animation: moving-flower-1 4s linear infinite;
+}
+
+.flower_stem {
+    width: 2vmin;
+    height: 65vmin;
+    background-image: linear-gradient(to left top, #82ff86 20%, #144425, #104e1c);
+    border-radius: 4vmin;
+}
+
+.flower_center {
+    position: absolute;
+    top: 0vmin;
+    left: 50%;
+    z-index: 5;
+    transform: translateX(-50%) rotate(-10deg);
+    width: 20vmin;
+    height: 20vmin;
+    border-radius: 50%;
+    background: radial-gradient(circle, #000, #ff5e00);
+    animation: open-flower-middle 2s 0.4s backwards;
+}
+
+.flower_petal {
+    position: absolute;
+    left: 50%;
+    z-index: 3;
+    bottom: 55vmin;
+    transform: translateX(-50%);
+    width: 7vmin;
+    height: 20vmin;
+    background: radial-gradient(circle, #ff5e00, #ffbb00);
+    clip-path: ellipse(50% 50% at 50% 50%);
+    transform-origin: center bottom;
+    animation: open-flower 2s 1s backwards;
+}
+
+.flower_petal-1 {
+    border-radius: 50% 50% 50% / 80% 80% 20% 20%;
+    background-image: none;
+    background: radial-gradient(circle, #ff5e00, #ffbb00);
+    animation: open-flower 1.4s 1s backwards;
+}
+
+.flower_petal-2 { transform: translateX(-50%) rotate(-30deg); }
+.flower_petal-3 { transform: translateX(-50%) rotate(-60deg); }
+.flower_petal-4 { transform: translateX(-50%) rotate(-90deg); }
+.flower_petal-5 { transform: translateX(-50%) rotate(-120deg); }
+.flower_petal-6 { transform: translateX(-50%) rotate(-150deg); }
+.flower_petal-7 { transform: translateX(-50%) rotate(30deg); }
+.flower_petal-8 { transform: translateX(-50%) rotate(60deg); }
+.flower_petal-9 { transform: translateX(-50%) rotate(90deg); }
+.flower_petal-10 { transform: translateX(-50%) rotate(120deg); }
+.flower_petal-11 { transform: translateX(-50%) rotate(150deg); }
+.flower_petal-12 { transform: translateX(-50%) rotate(180deg); }
+
+.flower_leaf {
+    position: absolute;
+    left: 60%;
+    bottom: 18vmin;
+    transform: translateX(-45%) rotate(80deg);
+    width: 7vmin;
+    height: 17vmin;
+    background: radial-gradient(circle, #82ff86, #104e1c);
+    border-radius: 10vmin 2vmin 10vmin 2vmin;
+    transform-origin: center bottom;
+}
+
+.flower_leaf-1 {
+    bottom: 18vmin;
+    transform: translateX(-45%) rotate(80deg);
+}
+
+.flower_leaf-2 {
+    bottom: 23vmin;
+    transform: translateX(-55%) rotate(-80deg);
+}
+
+.flower_light {
+    position: absolute;
+    bottom: 70vmin;
+    width: 1vmin;
+    height: 1vmin;
+    background-color: rgb(255, 251, 0);
+    border-radius: 50%;
+    filter: blur(0.2vmin);
+    animation: light-ans 4s linear infinite backwards;
+}
+
+.flower_light:nth-child(odd) {
+    background-color: #23f0ff;
+}
+
+.flower_light-1 { left: -2vmin; animation-delay: 1s; }
+.flower_light-2 { left: 3vmin; animation-delay: 0.5s; }
+.flower_light-3 { left: -6vmin; animation-delay: 0.3s; }
+.flower_light-4 { left: 6vmin; animation-delay: 0.9s; }
+.flower_light-5 { left: -1vmin; animation-delay: 1.5s; }
+.flower_light-6 { left: -4vmin; animation-delay: 3s; }
+.flower_light-7 { left: 3vmin; animation-delay: 2s; }
+.flower_light-8 { left: -6vmin; animation-delay: 3.5s; }
+
+@keyframes open-flower {
+    0% { transform: translateX(-50%) rotate(0); }
+}
+
+@keyframes open-flower-middle {
+    0% { opacity: 0; transform: translateX(-50%) scale(0); }
+}
+
+@keyframes light-ans {
+    0% { opacity: 0; transform: translateY(0vmin); }
+    25% { opacity: 1; transform: translateY(-5vmin) translateX(-2vmin); }
+    50% { opacity: 1; transform: translateY(-15vmin) translateX(2vmin); filter: blur(0.2vmin); }
+    75% { transform: translateY(-20vmin) translateX(-2vmin); filter: blur(0.2vmin); }
+    100% { transform: translateY(-30vmin); opacity: 0; filter: blur(1vmin); }
+}
+
+/* Espacio de luciérnagas y textos */
+#canvas-space {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+/* Cada luciérnaga de girasol con su mensaje */
+.firefly-item {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 160px;
+    pointer-events: auto;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+}
+
+/* Brillo intenso constante */
+.firefly-item .flower-emoji {
+    font-size: 45px;
+    margin-bottom: 5px;
+    line-height: 1;
+    animation: fireflyGlow 2.5s infinite ease-in-out;
+}
+
+@keyframes fireflyGlow {
+    0%, 100% {
+        opacity: 0.5;
+        filter: drop-shadow(0 0 8px rgba(255, 230, 0, 0.4));
+        transform: scale(0.95);
+    }
+    50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 35px rgba(255, 255, 0, 1)) drop-shadow(0 0 15px rgba(255, 255, 0, 0.9));
+        transform: scale(1.08);
+    }
+}
+
+.firefly-item p {
+    font-size: 14px;
+    margin: 0;
+    color: white;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.9), 0 0 3px black;
+}
